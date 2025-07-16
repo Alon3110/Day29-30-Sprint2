@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Meme Generator</title>
 </head>
-<body>
-    
+
+<body onload="onInit()">
+    <header>
+        <nav></nav>
+        <h1>Sprint 2</h1>
+    </header>
+
+    <div class="editor-container">
+        <canvas></canvas>
+        <input type="text">
+    </div>
+
+
+    <div class="img-container">
+
+        <section class="select-img-container">
+            <section>
+                <h4>Local Img</h4>
+                <img title="Local img" onclick="onSelectImg(this)" src="img/meme1.png" />
+            </section>
+            <section>
+                <h4>Local img</h4>
+                <img title="Img from another domain" onclick="onSelectImg(this)" src="img/meme2.png" />
+            </section>
+        </section>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/meme-service/storage-service.js"></script>
+    <script src="js/meme-service/meme-service.js"></script>
+    <script src="js/meme-controller/meme-controller.js"></script>
 </body>
+
 </html>
