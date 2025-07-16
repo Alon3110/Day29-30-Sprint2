@@ -5,7 +5,7 @@ const STORAGE_KEY = 'picDB'
 var gPics = loadFromStorage(STORAGE_KEY) || []
 
 var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }]
-var gMeme = {
+var gMeme = loadFromStorage(STORAGE_KEY) || {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
@@ -18,17 +18,17 @@ var gMeme = {
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
-var gBrush = {
-    color: 'black',
-    size: 5,
-    shape: 'square',
-    selectImg: false,
-    isDrag: false
+function getMeme() {
+    return gMeme
 }
-
 
 function getPics() {
     return gPics
+}
+
+function getInputValue() {
+    const elInput = document.querySelector('.img-txt')
+    return elInput.value
 }
 
 function removePic(picId) {

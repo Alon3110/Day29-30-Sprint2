@@ -17,12 +17,12 @@ function onDown(ev) {
 
     onDraw(ev)
     document.body.style.cursor = 'grabbing'
-    if (gBrush.selectImg) {
-        const elImg = new Image()
-        elImg.src = gBrush.selectImg
-        const pos = getEvPos(ev)
-        gCtx.drawImage(elImg, pos.x, pos.y, 50, 50)
-    }
+    // if (gBrush.selectImg) {
+    //     const elImg = new Image()
+    //     elImg.src = gBrush.selectImg
+    //     const pos = getEvPos(ev)
+    //     gCtx.drawImage(elImg, pos.x, pos.y, 50, 50)
+    // }
 }
 
 function onUp() {
@@ -45,23 +45,40 @@ function onDraw(ev) {
     }
 }
 
+function renderMeme(elImg) {
+    const img = new Image()
+    img.src = elImg.src
+    var text = 'hello world'
+    img.onload = () => {
+
+        gElCanvas.width = img.width
+        gElCanvas.height = img.height
+
+        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        drawText(text, 200, 50)
+
+
+        document.querySelector('.editor-container').style.display = 'block'
+        document.querySelector('.img-container').style.display = 'none'
+
+    }
+}
+
+function onInputText() {
+
+}
+
 function onDownloadCanvas(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
 
 function onSetColor(color) {
-    gBrush.color = color
     unSelectImg()
 }
 
 function onSetSize(size) {
-    gBrush.size = size
-    unSelectImg()
-}
-
-function onSetShape(shape) {
-    gBrush.shape = shape
     unSelectImg()
 }
 
@@ -110,35 +127,18 @@ function onUploadImg(ev) {
 }
 
 function onSelectImg(elImg) {
-    const img = new Image()
-    img.src = elImg.src
-    var text = 'Hello'
-    img.onload = () => {
-
-        gElCanvas.width = img.width
-        gElCanvas.height = img.height
-        
-        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(text, 200, 200)
-
-
-        document.querySelector('.editor-container').style.display = 'block'
-        document.querySelector('.img-container').style.display = 'none'
-
-    }
+    renderMeme(elImg)
 }
 
 function onSelectEmoji(elImg) {
-    if (gBrush.selectImg === elImg.src) {
-        unSelectEmoji()
-    } else {
-        gBrush.selectImg = elImg.src
-    }
+    // if (gBrush.selectImg === elImg.src) {
+    //     unSelectEmoji()
+    // } else {
+    //     gBrush.selectImg = elImg.src
+    // }
 }
 
 function unSelectEmoji() {
-
 }
 
 function renderPics() {
