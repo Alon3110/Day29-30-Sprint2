@@ -51,7 +51,16 @@ function onSetColor(color) {
     renderMeme(gCurrImg)
 }
 
+function onSetSize(diff) {
+    gMeme.lines.size += diff
+    renderMeme(gCurrImg)
+}
 
+function onDownloadCanvas(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+    elLink.download = 'my-img.jpeg'
+}
 
 
 
@@ -106,16 +115,6 @@ function onInputText() {
 
 }
 
-function onDownloadCanvas(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
-    elLink.download = 'my-img.jpeg'
-}
-
-
-function onSetSize(size) {
-    unSelectImg()
-}
 
 function onClearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
@@ -225,14 +224,16 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function drawText(text, x, y) {
+    const size = gMeme.lines.size || 40
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = onSetColor(gMeme.lines.color)
+    gCtx.strokeStyle = gMeme.lines.color || 'red'    
     gCtx.fillStyle = 'black'
-    gCtx.font = '40px Arial'
+    gCtx.font = `${size}px Arial`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+    // '40px Arial'
 }
 
 function getEvPos(ev) {
