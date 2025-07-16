@@ -39,12 +39,17 @@ function onSetLineTxt(txt) {
     renderMeme(gCurrImg)
 }
 
-
 function onSelectImg(elImg) {
     gCurrImg = elImg
     renderMeme(elImg)
 }
 
+function onSetColor(color) {
+    gMeme.lines.color = color
+    // gCtx.fillStyle = color
+    gCtx.strokeStyle = color
+    renderMeme(gCurrImg)
+}
 
 
 
@@ -104,11 +109,9 @@ function onInputText() {
 function onDownloadCanvas(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+    elLink.download = 'my-img.jpeg'
 }
 
-function onSetColor(color) {
-    unSelectImg()
-}
 
 function onSetSize(size) {
     unSelectImg()
@@ -223,7 +226,7 @@ function loadImageFromInput(ev, onImageReady) {
 
 function drawText(text, x, y) {
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'brown'
+    gCtx.strokeStyle = onSetColor(gMeme.lines.color)
     gCtx.fillStyle = 'black'
     gCtx.font = '40px Arial'
     gCtx.textAlign = 'center'

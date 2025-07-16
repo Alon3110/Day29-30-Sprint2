@@ -17,6 +17,8 @@
     <div class="editor-container">
         <canvas></canvas>
         <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onSetLineTxt(this.value)">
+        <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download Image from Canvas</a>
+        <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetColor(value)">
     </div>
 
 
