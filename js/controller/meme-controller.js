@@ -27,8 +27,6 @@ function renderMeme(elImg) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         drawText(text, 200, 50)
 
-        // document.querySelector('.meme-text-display').innerText = gMeme.lines.txt
-
         document.querySelector('.editor-container').style.display = 'block'
         document.querySelector('.img-container').style.display = 'none'
 
