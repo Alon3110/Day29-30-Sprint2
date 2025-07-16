@@ -16,22 +16,22 @@
 
     <div class="editor-container">
         <canvas></canvas>
-        <input name="img-txt" type="txt" class="img-txt" placeholder="Add Text Here" required />
+        <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onSetLineTxt(this.value)">
     </div>
 
 
     <div class="img-container">
 
-        <section class="select-img-container">
-            <section>
+        <!-- <section class="select-img-container"> -->
+        <!-- <section>
                 <h4>Local Img</h4>
                 <img title="Local img" onclick="onSelectImg(this)" src="img/meme1.png" />
             </section>
             <section>
                 <h4>Local img</h4>
                 <img title="Img from another domain" onclick="onSelectImg(this)" src="img/meme2.png" />
-            </section>
-        </section>
+            </section> -->
+        <!-- </section> -->
     </div>
 
     <script src="js/utils.js"></script>

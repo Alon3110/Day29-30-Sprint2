@@ -3,13 +3,67 @@
 var gElCanvas
 var gCtx
 var gIsMouseDown = false
+var gCurrImg = null
 
 function onInit() {
+    renderGallery()
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 }
+
+function renderMeme(elImg) {
+
+    const img = new Image()
+    img.src = elImg.src
+    var text = gMeme.lines.txt || 'Add Text Here'
+    img.onload = () => {
+
+        gElCanvas.width = img.width
+        gElCanvas.height = img.height
+
+        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        drawText(text, 200, 50)
+
+        // document.querySelector('.meme-text-display').innerText = gMeme.lines.txt
+
+        document.querySelector('.editor-container').style.display = 'block'
+        document.querySelector('.img-container').style.display = 'none'
+
+    }
+}
+
+function onSetLineTxt(txt) {
+    document.querySelector('.meme-text-input').innerText = gMeme.lines.txt
+    gMeme.lines.txt = txt
+    renderMeme(gCurrImg)
+}
+
+
+function onSelectImg(elImg) {
+    gCurrImg = elImg
+    renderMeme(elImg)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function onDown(ev) {
     gIsMouseDown = true
@@ -42,26 +96,6 @@ function onDraw(ev) {
         case 'circle':
             drawArc(offsetX, offsetY)
             break
-    }
-}
-
-function renderMeme(elImg) {
-    const img = new Image()
-    img.src = elImg.src
-    var text = 'hello world'
-    img.onload = () => {
-
-        gElCanvas.width = img.width
-        gElCanvas.height = img.height
-
-        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(text, 200, 50)
-
-
-        document.querySelector('.editor-container').style.display = 'block'
-        document.querySelector('.img-container').style.display = 'none'
-
     }
 }
 
@@ -126,9 +160,6 @@ function onUploadImg(ev) {
     uploadImg(canvasData, onSuccess)
 }
 
-function onSelectImg(elImg) {
-    renderMeme(elImg)
-}
 
 function onSelectEmoji(elImg) {
     // if (gBrush.selectImg === elImg.src) {
@@ -139,6 +170,7 @@ function onSelectEmoji(elImg) {
 }
 
 function unSelectEmoji() {
+
 }
 
 function renderPics() {

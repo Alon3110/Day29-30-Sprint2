@@ -1,20 +1,53 @@
 'use strict'
 
 const STORAGE_KEY = 'picDB'
+const MEME_KEY = 'MEME_DB'
 
 var gPics = loadFromStorage(STORAGE_KEY) || []
 
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }]
-var gMeme = loadFromStorage(STORAGE_KEY) || {
+var gImgs = [
+    {
+        id: 1,
+        url: 'img/meme1.png',
+        keywords: ['happy', 'cat']
+    },
+    {
+        id: 2,
+        url: 'img/meme2.png',
+        keywords: ['sad', 'cat']
+    },
+    {
+        id: 3,
+        url: 'img/meme3.png',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 4,
+        url: 'img/meme4.png',
+        keywords: ['crazy', 'cat']
+    },
+    {
+        id: 5,
+        url: 'img/meme5.png',
+        keywords: ['sarcastic', 'cat']
+    },
+    {
+        id: 6,
+        url: 'img/meme6.png',
+        keywords: ['funny', 'cat']
+    }
+]
+
+var gMeme = loadFromStorage(MEME_KEY) || {
     selectedImgId: 5,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 20,
-            color: 'red'
-        }
-    ]
+    lines:
+    {
+        txt: 'Add Text Here',
+        size: 20,
+        color: 'red'
+    }
+
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
@@ -22,13 +55,27 @@ function getMeme() {
     return gMeme
 }
 
+function getInputValue() {
+    const elInput = document.querySelector('.img-txt')
+    return elInput.value
+}
+
+function setLineTxt() {
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+}
+
+
+
+
+
+
 function getPics() {
     return gPics
 }
 
-function getInputValue() {
-    const elInput = document.querySelector('.img-txt')
-    return elInput.value
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth
 }
 
 function removePic(picId) {
@@ -56,11 +103,6 @@ function _createPic(data) {
     }
 }
 
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.clientWidth
-}
-
 async function uploadImg(imgData, onSuccess) {
     const CLOUD_NAME = 'webify'
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
@@ -80,6 +122,6 @@ async function uploadImg(imgData, onSuccess) {
     }
 }
 
-function _savePicsToStorage() {
-    saveToStorage(STORAGE_KEY, gPics)
+function _saveMemeToStorage() {
+    saveToStorage(MEME_KEY, gMeme)
 }
