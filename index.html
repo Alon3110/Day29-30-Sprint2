@@ -15,8 +15,9 @@
     </header>
 
     <div class="editor-container">
-        <canvas></canvas>
-        <textarea type="text" class="meme-text-input" rows="1" cols="30" oninput="onSetLineTxt(this.value)">Add Text Here</textarea>
+        <canvas onmousedown="onDown(event)"></canvas>
+        <textarea type="text" class="meme-text-input" rows="1" cols="30"
+            oninput="onSetLineTxt(this.value)">Add Text Here</textarea>
         <button class="add-line-btn" onclick="onAddLine()">add</button>
         <!-- <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onSetLineTxt(this.value)"> -->
         <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download Image from Canvas</a>

@@ -5,6 +5,8 @@ var gCtx
 var gIsMouseDown = false
 var gCurrImg = null
 const CLICK_MARGIN = 10
+const currInputIdx = null
+let gPrevPos = null
 
 function onInit() {
     renderGallery()
@@ -26,11 +28,12 @@ function renderMeme(elImg) {
         gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         // drawText(text, 200, 50)
-        
+
+
         for (let i = 0; i < gMeme.lines.length; i++) {
-            
-            const line = gMeme.lines[i]            
-            
+
+            const line = gMeme.lines[i]
+
             if (!line.pos) {
                 line.pos = {
                     x: gElCanvas.width / 2,
@@ -38,9 +41,9 @@ function renderMeme(elImg) {
                 }
             }
             drawText(line.txt || 'Add Text Here', line.pos.x, line.pos.y, line.size, line.color, line.fillColor)
-            
+
             if (i === gMeme.selectedLineIdx) {
-                
+
                 drawOutlineRectangle(line)
             }
         }
@@ -50,6 +53,10 @@ function renderMeme(elImg) {
         document.querySelector('.img-container').style.display = 'none'
     }
 }
+
+// function renderInputText() { 
+
+// }
 
 function onSetLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
@@ -75,7 +82,7 @@ function onSetFillColor(elInput) {
 }
 
 function onSetSize(diff) {
-    gMeme.lines[gMeme.selectedLineIdx].size += diff    
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
     renderMeme(gCurrImg)
 }
 
@@ -153,30 +160,75 @@ function drawOutlineRectangle(line) {
     gCtx.restore()
 }
 
-
-
-
-
-
-
-
-
-
-
-
+function isMouseInputDown(input, x, y) {
+    // const inputLeft = input.x
+    // const inputRight = input.x + gCtx.measureText(input.txt).width
+    // const inputTop = input.y - input.size / 2
+    // const inputBottom = input.y + input.size / 2
+    // if (x > inputLeft && x < inputRight && y > inputTop && y < inputBottom) {
+    //     return true
+    // }
+    // return false
+}
 
 function onDown(ev) {
-    gIsMouseDown = true
+    
     const pos = getEvPos(ev)
+    const clickedLineIdx = getClickedLineIdx(pos)
+    if (clickedLineIdx === -1) return
 
-    onDraw(ev)
-    document.body.style.cursor = 'crosshair'
+    gMeme.selectedLineIdx = clickedLineIdx
+    setInputDrag(true)
+    gPrevPos = pos
+    document.body.style.cursor = 'grabbing'
 
+    // Start listening to move and up
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function onMove(ev) {
+    if (!getSelectedLine().isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - gPrevPos.x
+    const dy = pos.y - gPrevPos.y
+    moveInput(dx, dy)
+
+    gPrevPos = pos
+    renderMeme(gCurrImg)
+}
+
+function onMove(ev) {
+    if (!getSelectedLine().isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - gPrevPos.x
+    const dy = pos.y - gPrevPos.y
+    moveInput(dx, dy)
+
+    gPrevPos = pos
+    renderMeme(gCurrImg)
+}
+
+function onMove(ev) {
+    if (!getSelectedLine().isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - gPrevPos.x
+    const dy = pos.y - gPrevPos.y
+    moveInput(dx, dy)
+
+    gPrevPos = pos
+    renderMeme(gCurrImg)
 }
 
 function onUp() {
-    gIsMouseDown = false
+     setInputDrag(false)
     document.body.style.cursor = 'grab'
+
+    gElCanvas.removeEventListener('mousemove', onMove)
+    gElCanvas.removeEventListener('mouseup', onUp)
 }
 
 function onDraw(ev) {

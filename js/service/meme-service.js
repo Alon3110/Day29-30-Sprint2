@@ -66,18 +66,42 @@ function getInputValue() {
     return elInput.value
 }
 
-function setInputDrag(isDrag) {
-    gMeme.lines[selectedLineIdx].isDrag = isDrag
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+function setInputDrag(isDrag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+function getClickedLineIdx(clickedPos) {
+    return gMeme.lines.findIndex(line => {
+        const { x, y } = line.pos
+        const width = gCtx.measureText(line.txt).width
+        const height = line.size
+
+        const left = x - width / 2
+        const right = x + width / 2
+        const top = y - height / 2
+        const bottom = y + height / 2
+
+        return clickedPos.x >= left &&
+            clickedPos.x <= right &&
+            clickedPos.y >= top &&
+            clickedPos.y <= bottom
+    })
+}
+
+
+
 function moveInput(dx, dy) {
-    const input = gMeme.lines[selectedLineIdx]
+    const input = gMeme.lines[gMeme.selectedLineIdx]
     input.pos.x += dx
     input.pos.y += dy
 }
 
 
-function setCirclePos(x, y) {
+function setInputPos(x, y) {
     const input = gMeme.lines[selectedLineIdx]
     input.pos.x = x
     input.pos.y = y
