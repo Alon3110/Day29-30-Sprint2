@@ -70,7 +70,18 @@ function setInputDrag(isDrag) {
     gMeme.lines[selectedLineIdx].isDrag = isDrag
 }
 
+function moveInput(dx, dy) {
+    const input = gMeme.lines[selectedLineIdx]
+    input.pos.x += dx
+    input.pos.y += dy
+}
 
+
+function setCirclePos(x, y) {
+    const input = gMeme.lines[selectedLineIdx]
+    input.pos.x = x
+    input.pos.y = y
+}
 
 
 
