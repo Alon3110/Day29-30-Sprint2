@@ -35,6 +35,64 @@ var gImgs = [
         id: 6,
         url: 'img/meme6.png',
         keywords: ['funny', 'cat']
+    },
+    {
+        id: 7,
+        url: 'img/meme7.png',
+        keywords: ['happy', 'cat']
+    }
+    ,
+    {
+        id: 8,
+        url: 'img/meme8.png',
+        keywords: ['sad', 'cat']
+    },
+    {
+        id: 9,
+        url: 'img/meme9.png',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 10,
+        url: 'img/meme10.png',
+        keywords: ['crazy', 'cat']
+    },
+    {
+        id: 11,
+        url: 'img/meme11.png',
+        keywords: ['sarcastic', 'cat']
+    },
+    {
+        id: 12,
+        url: 'img/meme12.png',
+        keywords: ['funny', 'cat']
+    }
+    ,
+    {
+        id: 13,
+        url: 'img/meme13.png',
+        keywords: ['happy', 'cat']
+    },
+    {
+        id: 14,
+        url: 'img/meme14.png',
+        keywords: ['sad', 'cat']
+    },
+    {
+        id: 15,
+        url: 'img/meme15.png',
+        keywords: ['funny', 'cat']
+    }
+    ,
+    {
+        id: 16,
+        url: 'img/meme16.png',
+        keywords: ['crazy', 'cat']
+    },
+    {
+        id: 17,
+        url: 'img/meme17.png',
+        keywords: ['sarcastic', 'cat']
     }
 ]
 
