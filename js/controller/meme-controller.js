@@ -86,6 +86,11 @@ function onSetSize(diff) {
     renderMeme(gCurrImg)
 }
 
+function onSetFontFamily(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font
+    renderMeme(gCurrImg)
+}
+
 function onDownloadCanvas(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
@@ -161,7 +166,7 @@ function drawOutlineRectangle(line) {
 }
 
 function onDown(ev) {
-    
+
     const pos = getEvPos(ev)
     const clickedLineIdx = getClickedLineIdx(pos)
     if (clickedLineIdx === -1) return
@@ -171,7 +176,8 @@ function onDown(ev) {
     gPrevPos = pos
     document.body.style.cursor = 'grabbing'
 
-    // Start listening to move and up
+    document.querySelector('.meme-text-input').value = gMeme.lines[gMeme.selectedLineIdx].txt
+
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mouseup', onUp)
 }
@@ -188,32 +194,8 @@ function onMove(ev) {
     renderMeme(gCurrImg)
 }
 
-function onMove(ev) {
-    if (!getSelectedLine().isDrag) return
-
-    const pos = getEvPos(ev)
-    const dx = pos.x - gPrevPos.x
-    const dy = pos.y - gPrevPos.y
-    moveInput(dx, dy)
-
-    gPrevPos = pos
-    renderMeme(gCurrImg)
-}
-
-function onMove(ev) {
-    if (!getSelectedLine().isDrag) return
-
-    const pos = getEvPos(ev)
-    const dx = pos.x - gPrevPos.x
-    const dy = pos.y - gPrevPos.y
-    moveInput(dx, dy)
-
-    gPrevPos = pos
-    renderMeme(gCurrImg)
-}
-
 function onUp() {
-     setInputDrag(false)
+    setInputDrag(false)
     document.body.style.cursor = 'grab'
 
     gElCanvas.removeEventListener('mousemove', onMove)
@@ -221,18 +203,24 @@ function onUp() {
 }
 
 function onDraw(ev) {
-    if (!gIsMouseDown) return
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    if (!line) return
 
-    const offsetX = ev.offsetX
-    const offsetY = ev.offsetY
-    switch (gBrush.shape) {
-        case 'square':
-            drawRect(offsetX, offsetY)
+    switch (align) {
+        case 'left':
+            line.align = 'left'
+            line.pos.x = 20
             break
-        case 'circle':
-            drawArc(offsetX, offsetY)
+        case 'center':
+            line.align = 'center'
+            line.pos.x = gElCanvas.width / 2
+            break
+        case 'right':
+            line.align = 'right'
+            line.pos.x = gElCanvas.width - 20
             break
     }
+    renderMeme(gCurrImg)
 }
 
 function onClearCanvas() {
