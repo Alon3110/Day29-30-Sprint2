@@ -54,10 +54,6 @@ function renderMeme(elImg) {
     }
 }
 
-// function renderInputText() { 
-
-// }
-
 function onSetLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
     document.querySelector('.meme-text-input').value = txt
