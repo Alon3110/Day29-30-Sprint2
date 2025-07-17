@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/35384c063f.js" crossorigin="anonymous"></script>
     <title>Meme Generator</title>
 </head>
 
@@ -26,6 +27,16 @@
         <button class="increase-size" onclick="onSetSize(2)">A +</button>
         <button class="dicrease-size" onclick="onSetSize(-2)">A -</button>
         <button class="switch-line-btn" onclick="onSwitchLine(this)">🔃</button>
+        <select onchange="onSetFontFamily(this.value)">
+            <option value="Arial">Arial</option>
+            <option value="Impact">Impact</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Comic Sans MS">Comic Sans</option>
+        </select>
+        <button onclick="onSetAlign('left')"><i class="fa-solid fa-align-left"></i></button>
+        <button onclick="onSetAlign('center')"><i class="fa-solid fa-align-center"></i></button>
+        <button onclick="onSetAlign('right')"><i class="fa-solid fa-align-right"></i></button>
+
     </div>
 
 
