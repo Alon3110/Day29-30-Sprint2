@@ -1,0 +1,20 @@
+/* Large: 1100px */
+/* medium: 960px */
+/* small: 740px */
+
+/* MOBILE MENU */
+
+@media(max-width: 900px) {}
+
+/* SMALL */
+
+@media (min-width: 640px) {}
+
+/* MEDIUM */
+@media (min-width: 900px) {}
+
+/* LARGE */
+
+@media (min-width: 1020px) {
+    
+}

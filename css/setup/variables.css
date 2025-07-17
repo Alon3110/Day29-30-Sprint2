@@ -1,0 +1,11 @@
+/* palette */
+
+:root {
+    --primary-color: rgb(255, 184, 0);
+    --secondary-color: #50e3c2;
+    --accent-color:rgb(255, 60, 56);
+    --background-color:rgb(18, 18, 18);
+    --text-color:rgb(255, 255, 255);
+    --buttons-color:rgb(31, 31, 31);
+    /* --border-color: #dddddd; */
+}

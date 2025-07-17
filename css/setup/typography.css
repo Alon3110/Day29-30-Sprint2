@@ -1,0 +1,20 @@
+/* BANGERS */
+
+@font-face {
+    font-family: bangers;
+    src: url(/css/fonts/bangers/Bangers-Regular.ttf);
+}
+
+/* LUCKIEST GUY */
+
+@font-face {
+    font-family: luckiestGuy;
+    src: url(/css/fonts/luckiest-guy/LuckiestGuy-Regular.ttf);
+}
+
+/* RUBIK */
+
+@font-face {
+    font-family: rubik;
+    src: url(/css/fonts/rubik/Rubik-Regular.ttf);
+}

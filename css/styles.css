@@ -12,9 +12,10 @@
 
 /* COMPONENTS */
 
-@import url('/css/component/header.css');
+@import url('/css/component/header-content.css');
+@import url('/css/component/main-header.css');
+@import url('/css/component/main-nav.css');
 @import url('/css/component/canvas.css');
-@import url('/css/component/footer.css');
 @import url('/css/component/gallery.css');
 @import url('/css/component/editor.css');
 @import url('/css/component/meme-text.css');
