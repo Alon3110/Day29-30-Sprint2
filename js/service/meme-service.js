@@ -45,7 +45,8 @@ var gMeme = loadFromStorage(MEME_KEY) || {
     {
         txt: 'Add Text Here',
         size: 40,
-        color: onSetColor(color),
+        color: 'black',
+        // color: onSetColor(color),
     }
 
 }

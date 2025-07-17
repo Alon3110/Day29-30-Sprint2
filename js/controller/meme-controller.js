@@ -27,6 +27,7 @@ function renderMeme(elImg) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         drawText(text, 200, 50)
 
+
         document.querySelector('.editor-container').style.display = 'block'
         document.querySelector('.img-container').style.display = 'none'
 
@@ -224,16 +225,24 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function drawText(text, x, y) {
-    const size = gMeme.lines.size || 40
+    const size = gMeme.lines.size || 60
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = gMeme.lines.color || 'red'    
+    gCtx.strokeStyle = gMeme.lines.color || 'red'
     gCtx.fillStyle = 'black'
     gCtx.font = `${size}px Arial`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+    // gCtx.fillText(text, x, y)
+    // gCtx.strokeText(text, x, y)
     // '40px Arial'
+    const lines = text.split('\n')
+    const lineHeight = size * 1.2
+
+    for (let i = 0; i < lines.length; i++) {
+        const lineY = y + i * lineHeight
+        gCtx.fillText(lines[i], x, lineY)
+        gCtx.strokeText(lines[i], x, lineY)
+    }
 }
 
 function getEvPos(ev) {
