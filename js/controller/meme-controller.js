@@ -160,17 +160,6 @@ function drawOutlineRectangle(line) {
     gCtx.restore()
 }
 
-function isMouseInputDown(input, x, y) {
-    // const inputLeft = input.x
-    // const inputRight = input.x + gCtx.measureText(input.txt).width
-    // const inputTop = input.y - input.size / 2
-    // const inputBottom = input.y + input.size / 2
-    // if (x > inputLeft && x < inputRight && y > inputTop && y < inputBottom) {
-    //     return true
-    // }
-    // return false
-}
-
 function onDown(ev) {
     
     const pos = getEvPos(ev)
