@@ -45,8 +45,9 @@ var gMeme = loadFromStorage(MEME_KEY) || {
         {
             txt: 'Add Text Here',
             size: 40,
-            color: 'red', // stroke color
+            color: 'red',
             fillColor: 'white',
+            font: 'Arial',
             pos: { x: 200, y: 100 },
             align: 'center',
             isDrag: false

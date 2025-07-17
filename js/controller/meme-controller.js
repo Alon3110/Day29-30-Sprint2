@@ -40,7 +40,7 @@ function renderMeme(elImg) {
                     y: 100 + i * (line.size * 1.5)
                 }
             }
-            drawText(line.txt || 'Add Text Here', line.pos.x, line.pos.y, line.size, line.color, line.fillColor)
+            drawText(line.txt || 'Add Text Here', line.pos.x, line.pos.y, line.size, line.color, line.fillColor, line.font, line.align)
 
             if (i === gMeme.selectedLineIdx) {
 
@@ -99,6 +99,8 @@ function onAddLine() {
         size: 40,
         color: 'red',
         fillColor: 'white',
+        font: 'Arial',
+        isDrag: false,
         pos: {
             x: gElCanvas.width / 2,
             y: 100 + gMeme.lines.length * 50
@@ -118,14 +120,14 @@ function onSwitchLine(elIdx) {
     renderMeme(gCurrImg)
 }
 
-function drawText(text, x, y, size, color = 'red', fillColor = 'white') {
-    gCtx.font = `${size}px Arial`
+function drawText(text, x, y, size, color = 'red', fillColor = 'white', font = 'Arial', align = 'center') {
     const lines = text.split('\n')
+    gCtx.font = `${size}px ${font}`
     const lineHeight = size * 1.2
     gCtx.lineWidth = 2
     gCtx.strokeStyle = color
     gCtx.fillStyle = fillColor
-    gCtx.textAlign = 'center'
+    gCtx.textAlign = align
     gCtx.textBaseline = 'middle'
 
     for (let i = 0; i < lines.length; i++) {
@@ -198,7 +200,7 @@ function onUp() {
     gElCanvas.removeEventListener('mouseup', onUp)
 }
 
-function onDraw(ev) {
+function onSetAlign(align) {
     const line = gMeme.lines[gMeme.selectedLineIdx]
     if (!line) return
 
@@ -219,8 +221,18 @@ function onDraw(ev) {
     renderMeme(gCurrImg)
 }
 
-function onClearCanvas() {
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+function onDeleteLine() {
+
+    gMeme.lines = gMeme.lines.filter((line, idx) => idx !== gMeme.selectedLineIdx)
+    gMeme.selectedLineIdx = 0
+
+    if (!gMeme.lines.length) {
+        onAddLine()
+    } else {
+        document.querySelector('.meme-text-input').value =
+            gMeme.lines[0].txt
+        renderMeme(gCurrImg)
+    }
 }
 
 function onImgInput(ev) {
