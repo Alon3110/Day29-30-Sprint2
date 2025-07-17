@@ -48,7 +48,8 @@ var gMeme = loadFromStorage(MEME_KEY) || {
             color: 'red', // stroke color
             fillColor: 'white',
             pos: { x: 200, y: 100 },
-            align: 'center'
+            align: 'center',
+            isDrag: false
         }
     ]
 
@@ -65,6 +66,9 @@ function getInputValue() {
     return elInput.value
 }
 
+function setInputDrag(isDrag) {
+    gMeme.lines[selectedLineIdx].isDrag = isDrag
+}
 
 
 

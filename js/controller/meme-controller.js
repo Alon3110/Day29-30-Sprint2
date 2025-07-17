@@ -170,13 +170,8 @@ function onDown(ev) {
     const pos = getEvPos(ev)
 
     onDraw(ev)
-    document.body.style.cursor = 'grabbing'
-    // if (gBrush.selectImg) {
-    //     const elImg = new Image()
-    //     elImg.src = gBrush.selectImg
-    //     const pos = getEvPos(ev)
-    //     gCtx.drawImage(elImg, pos.x, pos.y, 50, 50)
-    // }
+    document.body.style.cursor = 'crosshair'
+
 }
 
 function onUp() {
@@ -198,11 +193,6 @@ function onDraw(ev) {
             break
     }
 }
-
-function onInputText() {
-
-}
-
 
 function onClearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
