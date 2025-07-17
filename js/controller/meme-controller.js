@@ -4,6 +4,7 @@ var gElCanvas
 var gCtx
 var gIsMouseDown = false
 var gCurrImg = null
+const CLICK_MARGIN = 10
 
 function onInit() {
     renderGallery()
@@ -14,10 +15,9 @@ function onInit() {
 }
 
 function renderMeme(elImg) {
-
     const img = new Image()
     img.src = elImg.src
-    var text = gMeme.lines.txt || 'Add Text Here'
+    var text = gMeme.lines[gMeme.selectedLineIdx].txt || 'Add Text Here'
     img.onload = () => {
 
         gElCanvas.width = img.width
@@ -25,18 +25,31 @@ function renderMeme(elImg) {
 
         gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(text, 200, 50)
+        // drawText(text, 200, 50)
+        for (let i = 0; i < gMeme.lines.length; i++) {
+            
+            const line = gMeme.lines[i]
+            if (!line.pos) {
+                line.pos = {
+                    x: gElCanvas.width / 2,
+                    y: 100 + i * (line.size * 1.5)
+                }
+            }
+            drawText(line.txt || 'Add Text Here', line.pos.x, line.pos.y, line.size, line.color)
+            if (i === gMeme.selectedLineIdx) {
+                drawOutlineRectangle(line)
+            }
+        }
 
 
         document.querySelector('.editor-container').style.display = 'block'
         document.querySelector('.img-container').style.display = 'none'
-
     }
 }
 
 function onSetLineTxt(txt) {
-    document.querySelector('.meme-text-input').innerText = gMeme.lines.txt
-    gMeme.lines.txt = txt
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+    document.querySelector('.meme-text-input').value = txt
     renderMeme(gCurrImg)
 }
 
@@ -46,14 +59,13 @@ function onSelectImg(elImg) {
 }
 
 function onSetColor(color) {
-    gMeme.lines.color = color
-    // gCtx.fillStyle = color
+    gMeme.lines[gMeme.selectedLineIdx].color = color
     gCtx.strokeStyle = color
     renderMeme(gCurrImg)
 }
 
 function onSetSize(diff) {
-    gMeme.lines.size += diff
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
     renderMeme(gCurrImg)
 }
 
@@ -63,7 +75,26 @@ function onDownloadCanvas(elLink) {
     elLink.download = 'my-img.jpeg'
 }
 
+function onAddLine() {
+    const newLine = {
+        txt: 'Add Text Here',
+        size: 40,
+        color: 'red',
+        pos: { x: gElCanvas.width / 2, y : 100 + gMeme.lines.length * 50 },
+        align: 'center'
+    }
+    gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    document.querySelector('.meme-text-input').value = newLine.txt
+    renderMeme(gCurrImg)
+}
 
+function onSwitchLine(elIdx) {
+    elIdx.classList.toggle('active')
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx + 1) % gMeme.lines.length
+    document.querySelector('.meme-text-input').value = gMeme.lines[gMeme.selectedLineIdx].txt
+    renderMeme(gCurrImg)
+}
 
 
 
@@ -224,25 +255,48 @@ function loadImageFromInput(ev, onImageReady) {
 
 }
 
-function drawText(text, x, y) {
-    const size = gMeme.lines.size || 60
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = gMeme.lines.color || 'red'
-    gCtx.fillStyle = 'black'
-    gCtx.font = `${size}px Arial`
-    gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'middle'
-    // gCtx.fillText(text, x, y)
-    // gCtx.strokeText(text, x, y)
-    // '40px Arial'
+function drawText(text, x, y, size = 40, color = 'red') {
+    size = gMeme.lines[gMeme.selectedLineIdx].size
     const lines = text.split('\n')
     const lineHeight = size * 1.2
+    gCtx.font = `${size}px Arial`
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = gMeme.lines[gMeme.selectedLineIdx].color
+    gCtx.fillStyle = 'black'
+    gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'middle'
 
     for (let i = 0; i < lines.length; i++) {
         const lineY = y + i * lineHeight
         gCtx.fillText(lines[i], x, lineY)
         gCtx.strokeText(lines[i], x, lineY)
     }
+}
+
+function drawOutlineRectangle(line) {
+    gCtx.save()
+    gCtx.lineWidth = 3
+    gCtx.strokeStyle = 'white'
+
+    let { x, y } = line.pos
+    y -= line.size / 2
+
+    const textWidth = gCtx.measureText(line.txt).width
+
+    if (line.align === 'center') x -= textWidth / 2
+    if (line.align === 'right') x -= textWidth
+
+    x -= CLICK_MARGIN
+
+    gCtx.beginPath()
+    gCtx.strokeRect(
+        x,
+        y,
+        textWidth + CLICK_MARGIN * 2,
+        line.size + CLICK_MARGIN
+    )
+    gCtx.stroke()
+    gCtx.restore()
 }
 
 function getEvPos(ev) {

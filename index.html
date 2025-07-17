@@ -17,11 +17,13 @@
     <div class="editor-container">
         <canvas></canvas>
         <textarea type="text" class="meme-text-input" rows="1" cols="30" oninput="onSetLineTxt(this.value)">Add Text Here</textarea>
+        <button class="add-line-btn" onclick="onAddLine()">add</button>
         <!-- <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onSetLineTxt(this.value)"> -->
         <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download Image from Canvas</a>
         <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetColor(value)">
         <button class="increase-size" onclick="onSetSize(2)">A +</button>
         <button class="dicrease-size" onclick="onSetSize(-2)">A -</button>
+        <button class="switch-line-btn" onclick="onSwitchLine(this)">🔃</button>
     </div>
 
 
@@ -29,9 +31,9 @@
 
     <script src="js/utils.js"></script>
     <script src="js/service/storage-service.js"></script>
-    <script src="js/controller/gallery-controller.js"></script>
     <script src="js/service/meme-service.js"></script>
     <script src="js/controller/meme-controller.js"></script>
+    <script src="js/controller/gallery-controller.js"></script>
 </body>
 
 </html>

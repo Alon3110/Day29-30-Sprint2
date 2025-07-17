@@ -41,15 +41,18 @@ var gImgs = [
 var gMeme = loadFromStorage(MEME_KEY) || {
     selectedImgId: 5,
     selectedLineIdx: 0,
-    lines:
-    {
-        txt: 'Add Text Here',
-        size: 40,
-        color: 'black',
-        // color: onSetColor(color),
-    }
+    lines: [
+        {
+            txt: 'Add Text Here',
+            size: 40,
+            color: 'red',
+            pos: { x: 200, y: 100 },
+            align: 'center'
+        }
+    ]
 
 }
+
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getMeme() {
@@ -61,9 +64,6 @@ function getInputValue() {
     return elInput.value
 }
 
-function setLineTxt() {
-    gMeme.lines[gMeme.selectedLineIdx].txt = txt
-}
 
 
 
