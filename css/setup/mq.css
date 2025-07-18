@@ -11,10 +11,46 @@
 @media (min-width: 640px) {}
 
 /* MEDIUM */
-@media (min-width: 900px) {}
+@media (min-width: 900px) {
+    .main-layout {
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(16px, 1fr);
+    }
+
+
+}
 
 /* LARGE */
 
 @media (min-width: 1020px) {
-    
+
+    html {
+        font-size: 16px;
+    }
+
+    .main-layout {
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, 1320px) minmax(16px, 1fr);
+    }
+
+    .main-header {
+        height: 80px;
+    }
+
+    .header-container {
+        justify-content: space-between;
+    }
+
+    .main-nav {
+        display: flex;
+    }
+
+    .main-nav ul {
+        display: flex;
+        align-items: center;
+        gap: 70px;
+    }
+
+    .img-container {
+
+    }
+
 }

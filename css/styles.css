@@ -12,7 +12,8 @@
 
 /* COMPONENTS */
 
-@import url('/css/component/header-content.css');
+@import url('/css/component/header-container.css');
+@import url('/css/component/logo.css');
 @import url('/css/component/main-header.css');
 @import url('/css/component/main-nav.css');
 @import url('/css/component/canvas.css');
