@@ -3,7 +3,8 @@
 const STORAGE_KEY = 'picDB'
 const MEME_KEY = 'MEME_DB'
 
-var gPics = loadFromStorage(STORAGE_KEY) || []
+const SAVED_MEMES_KEY = 'savedMemes'
+var gSavedMemes = loadFromStorage(SAVED_MEMES_KEY) || []
 
 var gImgs = [
     {
@@ -103,9 +104,9 @@ var gMeme = loadFromStorage(MEME_KEY) || {
         {
             txt: 'Add Text Here',
             size: 40,
-            color: 'red',
+            color: 'black',
             fillColor: 'white',
-            font: 'Arial',
+            font: 'Impact',
             pos: { x: 200, y: 100 },
             align: 'center',
             isDrag: false
@@ -169,12 +170,12 @@ function setInputPos(x, y) {
 
 
 
-function getPics() {
-    return gPics
+function getSavedMemes() {
+    return gSavedMemes
 }
 
 function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
+    const elContainer = document.querySelector('.editor-container')
     gElCanvas.width = elContainer.clientWidth
 }
 
@@ -186,14 +187,15 @@ function removePic(picId) {
     }
 }
 
-function addPic(data) {
-    const pic = _createPic(data)
-    gPics.push(pic)
-    _savePicsToStorage()
+function saveCurrentMeme() {
+    const savedMeme = structuredClone(gMeme)
+    savedMeme.id = makeId()
+    gSavedMemes.push(savedMeme)
+    saveToStorage(SAVED_MEMES_KEY, gSavedMemes)
 }
 
-function getPicById(picId) {
-    return gPics.find(pic => pic.id === picId)
+function getSavedMemeById(memeId) {
+    return gSavedMemes.find(meme => meme.id === memeId)
 }
 
 function _createPic(data) {

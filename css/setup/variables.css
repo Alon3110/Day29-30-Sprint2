@@ -2,9 +2,10 @@
 
 :root {
     --primary-color: rgb(255, 184, 0);
-    --secondary-color: #50e3c2;
+    --secondary-color: rgb(80, 227, 194);
     --accent-color:rgb(255, 60, 56);
-    --background-color:rgb(18, 18, 18);
+    --background-header-color:rgb(18, 18, 18);
+    --background-color: rgb(34, 37, 44);
     --text-color:rgb(255, 255, 255);
     --buttons-color:rgb(31, 31, 31);
     /* --border-color: #dddddd; */

@@ -9,11 +9,16 @@ const currInputIdx = null
 let gPrevPos = null
 
 function onInit() {
-    renderGallery()
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
+    addCanvasListeners()
+    document.querySelector('.gallery-section').style.display = 'block'
+    document.querySelector('.editor-container').style.display = 'none'
+    document.querySelector('.saved-memes-section').style.display = 'none'
+
+    renderGallery()
 }
 
 function renderMeme(elImg) {
@@ -51,6 +56,7 @@ function renderMeme(elImg) {
 
         document.querySelector('.editor-container').style.display = 'block'
         document.querySelector('.img-container').style.display = 'none'
+        document.querySelector('.key-words-container').style.display = 'none'
     }
 }
 
@@ -59,9 +65,13 @@ function onSetLineTxt(txt) {
     document.querySelector('.meme-text-input').value = txt
     renderMeme(gCurrImg)
 }
-
 function onSelectImg(elImg) {
     gCurrImg = elImg
+
+    if (!gElCanvas || !gCtx) {
+        gElCanvas = document.querySelector('canvas')
+        gCtx = gElCanvas.getContext('2d')
+    }
     renderMeme(elImg)
 }
 
@@ -97,9 +107,9 @@ function onAddLine() {
     const newLine = {
         txt: 'Add Text Here',
         size: 40,
-        color: 'red',
+        color: 'black',
         fillColor: 'white',
-        font: 'Arial',
+        font: 'Impact',
         isDrag: false,
         pos: {
             x: gElCanvas.width / 2,
@@ -275,6 +285,17 @@ function onUploadImg(ev) {
     uploadImg(canvasData, onSuccess)
 }
 
+function onKeywordPressed(value) {
+    if (!gKeywordSearchCountMap[value]) gKeywordSearchCountMap[value] = 1
+    else gKeywordSearchCountMap[value]++
+
+    const fontSize = 0.75 + gKeywordSearchCountMap[value] * 0.05
+    const elBtn = document.querySelector(`.keyword[value="${value}"]`)
+    elBtn.style.fontSize = `${fontSize}em`
+
+    const filteredImgs = gImgs.filter(img => img.keywords.includes(value))
+    renderFilteredGallery(filteredImgs)
+}
 
 function onSelectEmoji(elImg) {
     // if (gBrush.selectImg === elImg.src) {
@@ -286,20 +307,6 @@ function onSelectEmoji(elImg) {
 
 function unSelectEmoji() {
 
-}
-
-function renderPics() {
-    const pics = getPics()
-    const elContainer = document.querySelector('.saved-pics-container')
-
-    let strHTML = '<h4>Select an image</h4>'
-    strHTML += pics.map(pic => `
-        <div class="img-wrapper">
-        <img class="img" title="Saved img" src="${pic.dataUrl}" onclick="onSelectpic('${pic.id}')"/>
-        <button onclick="onRemovePic('${pic.id}')">X</button>
-        </div>
-    `).join('')
-    elContainer.innerHTML = strHTML
 }
 
 function onRemovePic(picId) {
@@ -314,11 +321,27 @@ function onSelectpic(picId) {
     }
 }
 
-function onSavePicture() {
-    const dataUrl = gElCanvas.toDataURL('image/png')
-    addPic(dataUrl)
-    renderPics()
+function onShowGallery() {
+
+    document.querySelector('.editor-container').style.display = 'none'
+    document.querySelector('.key-words-container').style.display = 'block'
+    document.querySelector('.img-container').style.display = 'block'
+    document.querySelector('.img-container').style.display = 'grid'
+
+    renderGallery()
 }
+
+function addCanvasListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('touchend', onUp)
+
+    gElCanvas.addEventListener('touchstart', ev => ev.preventDefault(), { passive: false })
+}
+
 
 function loadImageFromInput(ev, onImageReady) {
     document.querySelector('.share-container').innerHTML = ''
@@ -348,15 +371,9 @@ function getEvPos(ev) {
     }
 
     if (TOUCH_EVS.includes(ev.type)) {
-        //* Prevent triggering the default mouse behavior
         ev.preventDefault()
 
-        //* Gets the first touch point (could be multiple in touch event)
         ev = ev.changedTouches[0]
-        /* 
-        * Calculate touch coordinates relative to canvas 
-        * position by subtracting canvas offsets (left and top) from page coordinates
-        */
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,

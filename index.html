@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/35384c063f.js" crossorigin="anonymous"></script>
-    
+
     <title>Meme Generator</title>
 </head>
 
@@ -16,10 +16,8 @@
             <div class="logo">Meme Generator</div>
             <nav class="main-nav">
                 <ul class="clean-list">
-                    <li><a href="#">Memes</a></li>
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,10 +25,10 @@
 
     <div class="editor-container">
         <canvas onmousedown="onDown(event)"></canvas>
+        
         <textarea type="text" class="meme-text-input" rows="1" cols="30"
             oninput="onSetLineTxt(this.value)">Add Text Here</textarea>
         <button class="add-line-btn" onclick="onAddLine()">add</button>
-        <!-- <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onSetLineTxt(this.value)"> -->
         <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download Image from Canvas</a>
         <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetColor(this)">
         <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetFillColor(this)">
@@ -47,10 +45,43 @@
         <button onclick="onSetAlign('center')"><i class="fa-solid fa-align-center"></i></button>
         <button onclick="onSetAlign('right')"><i class="fa-solid fa-align-right"></i></button>
         <button onclick="onDeleteLine()">🗑️</button>
+        <button class="btn" onclick="onSaveMeme()">Save</button>
+        <form action="" method="POST" onsubmit="onUploadImg(event)">
+            <button class="btn" type="submit">Upload to Cloudinary</button>
+        </form>
+        <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" class="file-input btn"
+            id="file-input" name="image">
+
+        <div class="share-container">
+            <button class="btn-facebook" target="_blank"
+                onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg&amp;t=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg')">
+                Share on Facebook
+            </button>
+        </div>
 
     </div>
 
-    <div class="img-container main-layout"></div>
+    <div class="key-words-container flex">
+        <button onclick="onKeywordPressed(this.value)" data-trans="happy" value="happy" class="keyword keyword1"
+            style="font-size: 0.75em;">Happy</button>
+        <button onclick="onKeywordPressed(this.value)" data-trans="sad" value="sad" class="keyword keyword2"
+            style="font-size: 0.75em;">Sad</button>
+        <button onclick="onKeywordPressed(this.value)" data-trans="crazy" value="crazy" class="keyword keyword3"
+            style="font-size: 0.85em;">Crazy</button>
+        <button onclick="onKeywordPressed(this.value)" data-trans="sarcastic" value="sarcastic" class="keyword keyword4"
+            style="font-size: 0.95em;">Sarcastic</button>
+        <button onclick="onKeywordPressed(this.value)" data-trans="funny" value="funny" class="keyword keyword5"
+            style="font-size: 1.1em;">Funny</button>
+    </div>
+
+    <section class="gallery-section">
+        <div class="img-container"></div>
+    </section>
+
+    <section class="saved-memes-section">
+        <h2>Saved Memes</h2>
+        <div class="saved-memes-container img-container"></div>
+    </section>
 
     <script src="js/utils.js"></script>
     <script src="js/service/storage-service.js"></script>
