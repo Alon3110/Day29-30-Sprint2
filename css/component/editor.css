@@ -1,3 +1,9 @@
+
 .editor-container {
-    margin-top: 100px;
+    gap:20px;
+    margin: 100px auto;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }

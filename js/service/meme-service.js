@@ -115,7 +115,7 @@ var gMeme = loadFromStorage(MEME_KEY) || {
 
 }
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+var gKeywordSearchCountMap = { }
 
 function getMeme() {
     return gMeme
@@ -152,14 +152,11 @@ function getClickedLineIdx(clickedPos) {
     })
 }
 
-
-
 function moveInput(dx, dy) {
     const input = gMeme.lines[gMeme.selectedLineIdx]
     input.pos.x += dx
     input.pos.y += dy
 }
-
 
 function setInputPos(x, y) {
     const input = gMeme.lines[selectedLineIdx]
@@ -167,42 +164,9 @@ function setInputPos(x, y) {
     input.pos.y = y
 }
 
-
-
-
-function getSavedMemes() {
-    return gSavedMemes
-}
-
 function resizeCanvas() {
     const elContainer = document.querySelector('.editor-container')
     gElCanvas.width = elContainer.clientWidth
-}
-
-function removePic(picId) {
-    const idx = gPics.findIndex(pic => pic.id === picId)
-    if (idx !== -1) {
-        gPics.splice(idx, 1)
-        _savePicsToStorage()
-    }
-}
-
-function saveCurrentMeme() {
-    const savedMeme = structuredClone(gMeme)
-    savedMeme.id = makeId()
-    gSavedMemes.push(savedMeme)
-    saveToStorage(SAVED_MEMES_KEY, gSavedMemes)
-}
-
-function getSavedMemeById(memeId) {
-    return gSavedMemes.find(meme => meme.id === memeId)
-}
-
-function _createPic(data) {
-    return {
-        id: makeId(),
-        dataUrl: data
-    }
 }
 
 async function uploadImg(imgData, onSuccess) {

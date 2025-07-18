@@ -16,7 +16,6 @@ function onInit() {
     addCanvasListeners()
     document.querySelector('.gallery-section').style.display = 'block'
     document.querySelector('.editor-container').style.display = 'none'
-    document.querySelector('.saved-memes-section').style.display = 'none'
 
     renderGallery()
 }
@@ -32,7 +31,6 @@ function renderMeme(elImg) {
 
         gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        // drawText(text, 200, 50)
 
 
         for (let i = 0; i < gMeme.lines.length; i++) {
@@ -65,6 +63,7 @@ function onSetLineTxt(txt) {
     document.querySelector('.meme-text-input').value = txt
     renderMeme(gCurrImg)
 }
+
 function onSelectImg(elImg) {
     gCurrImg = elImg
 
@@ -286,15 +285,16 @@ function onUploadImg(ev) {
 }
 
 function onKeywordPressed(value) {
-    if (!gKeywordSearchCountMap[value]) gKeywordSearchCountMap[value] = 1
-    else gKeywordSearchCountMap[value]++
+  if (!gKeywordSearchCountMap[value]) gKeywordSearchCountMap[value] = 1;
+  else gKeywordSearchCountMap[value]++;
 
-    const fontSize = 0.75 + gKeywordSearchCountMap[value] * 0.05
-    const elBtn = document.querySelector(`.keyword[value="${value}"]`)
-    elBtn.style.fontSize = `${fontSize}em`
+  const newSizeEm = 0.75 + gKeywordSearchCountMap[value] * 0.05;
 
-    const filteredImgs = gImgs.filter(img => img.keywords.includes(value))
-    renderFilteredGallery(filteredImgs)
+  const btn = document.querySelector(`.main-key-words .keyword[value="${value}"]`);
+  if (btn) btn.style.fontSize = `${newSizeEm}em`;
+
+  const filteredImgs = gImgs.filter(img => img.keywords.includes(value));
+  renderFilteredGallery(filteredImgs);
 }
 
 function onSelectEmoji(elImg) {
@@ -324,7 +324,7 @@ function onSelectpic(picId) {
 function onShowGallery() {
 
     document.querySelector('.editor-container').style.display = 'none'
-    document.querySelector('.key-words-container').style.display = 'block'
+    document.querySelector('.key-words-container').style.removeProperty('display')
     document.querySelector('.img-container').style.display = 'block'
     document.querySelector('.img-container').style.display = 'grid'
 
