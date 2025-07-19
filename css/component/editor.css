@@ -1,9 +1,89 @@
-
 .editor-container {
-    gap:20px;
-    margin: 100px auto;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    margin: 0 auto;
+    gap: 20px; /* optional: adds spacing between canvas and editor panel */ 
+}
+
+.main-canvas {
+    width: 25rem;
+    height: 25rem;
+    margin: 70px auto;
+}
+
+.meme-editor-items {
+    width: 390px;
+    height: 12.5rem;
+    background-color: rgb(58, 62, 73);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.meme-text-editor {
+    display: grid;
+    grid-template-columns: minmax(50px, 1fr) 50px minmax(50px, 1fr);
+    grid-template-rows: 2;
+    max-width: 300px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 10%;
+}
+
+.meme-text-input {
+    grid-row: 1;
+    grid-column: 1 / 4;
+    background-color: #ebeef3;
+    border-radius: 1.75rem;
+    border: none;
+    font-size: clamp(1vw, 1em, 3vw);
+    padding-inline-start: 80px;
+}
+
+.add-line-btn {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    justify-self: end;
+    color: white;
+    border: none;
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+    box-shadow: 1px 5px 0 #015d33, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    font-size: 1.5em;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.switch-line-btn {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    justify-self: center;
+    color: white;
+    border: none;
+    background-image: linear-gradient(-38deg, #66c4dc 0%, #0c98bb 100% 100%);
+    box-shadow: 1px 5px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-line-btn {
+    grid-row: 2 / 3;
+    grid-column: 3/4;
+    justify-self: start;
+    color: white;
+    border: none;
+    background-image: linear-gradient(-38deg, #cf1d37 0%, #f05036 100%);
+    box-shadow: 1px 5px 0 #8c0606, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.meme-text-style {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }

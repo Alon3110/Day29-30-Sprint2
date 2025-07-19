@@ -1,0 +1,27 @@
+.meme-text-style {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    /* max-width: 300px; */
+}
+
+.meme-text-style button,
+input {
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.meme-text-style .dropdown-font {
+    grid-column: 3/6;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+
+}

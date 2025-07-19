@@ -41,52 +41,54 @@
             </div>
         </div>
 
-        <div class="editor-container">
+        <div class="editor-container align-center">
             <div class="main-canvas">
                 <canvas onmousedown="onDown(event)"></canvas>
             </div>
-            
+
             <div class="meme-editor-items">
 
                 <div class="meme-text-editor">
                     <textarea type="text" class="meme-text-input" rows="1" cols="30"
-                    oninput="onSetLineTxt(this.value)">Add Text Here</textarea>
-                    <button class="add-line-btn" onclick="onAddLine()">add</button>
-                    <button class="switch-line-btn" onclick="onSwitchLine(this)">🔃</button>
-                    <button onclick="onDeleteLine()">🗑️</button>
+                        oninput="onSetLineTxt(this.value)">Add Text Here</textarea>
+                    <button class="add-line-btn" onclick="onAddLine()">+</button>
+                    <button class="switch-line-btn" onclick="onSwitchLine(this)"><i class="fa-solid fa-arrow-up-long"
+                            aria-hidden="true"></i><i class="fa-solid fa-arrow-down-long"
+                            aria-hidden="true"></i></button>
+                    <button class="delete-line-btn" onclick="onDeleteLine()"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
                 </div>
 
-                    <div class="meme-text-style">
-                        <button class="increase-size" onclick="onSetSize(2)">A +</button>
-                        <button class="dicrease-size" onclick="onSetSize(-2)">A -</button>
-                        <button onclick="onSetAlign('left')"><i class="fa-solid fa-align-left"></i></button>
-                        <button onclick="onSetAlign('center')"><i class="fa-solid fa-align-center"></i></button>
-                        <button onclick="onSetAlign('right')"><i class="fa-solid fa-align-right"></i></button>
-                        <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetColor(this)">
-                        <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetFillColor(this)">
-                        <select onchange="onSetFontFamily(this.value)">
-                            <option value="Impact">Impact</option>
-                            <option value="Arial">Arial</option>
-                            <option value="Courier New">Courier New</option>
-                            <option value="Comic Sans MS">Comic Sans</option>
-                        </select>
-                    </div>
+                <div class="meme-text-style">
+                    <button class="increase-size" onclick="onSetSize(2)">A +</button>
+                    <button class="dicrease-size" onclick="onSetSize(-2)">A -</button>
+                    <button onclick="onSetAlign('left')"><i class="fa-solid fa-align-left"></i></button>
+                    <button onclick="onSetAlign('center')"><i class="fa-solid fa-align-center"></i></button>
+                    <button onclick="onSetAlign('right')"><i class="fa-solid fa-align-right"></i></button>
+                    <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetColor(this)">
+                    <input type="color" id="pallette" name="pallette" value=" #69da3c" onchange="onSetFillColor(this)">
+                    <select class="dropdown-font" onchange="onSetFontFamily(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Comic Sans MS">Comic Sans</option>
+                    </select>
+                </div>
 
-                    <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download</a>
-                    <form action="" method="POST" onsubmit="onUploadImg(event)">
-                        <button class="btn" type="submit">Upload to Cloudinary</button>
-                    </form>
-                    <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp"
-                        class="file-input btn" id="file-input" name="image">
+                <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download</a>
+                <form action="" method="POST" onsubmit="onUploadImg(event)">
+                    <button class="btn" type="submit">Upload to Cloudinary</button>
+                </form>
+                <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" class="file-input btn"
+                    id="file-input" name="image">
 
-                    <div class="share-container">
-                        <button class="btn-facebook" target="_blank"
-                            onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg&amp;t=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg')">
-                            Share on Facebook
-                        </button>
-                    </div>
+                <div class="share-container">
+                    <button class="btn-facebook" target="_blank"
+                        onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg&amp;t=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg')">
+                        Share on Facebook
+                    </button>
                 </div>
             </div>
+        </div>
 
         <section class="gallery-section">
             <div class="img-container"></div>
