@@ -92,9 +92,36 @@
 }
 
 .meme-actions-container {
-    text-align: center;
+    flex-direction: column;
+}
+
+.actions-btn {
+    align-self: center;
+    /* border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer; */
+}
+
+.actions-btn button {
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 1px 6px 0 #6b169c, inset 0 5px 0 #b863e9;
+    background-color: #9920df;
+}
+
+.actions-btn a {
+    color: white;
+    font-family: poppins;
+}
+
+.file-input {
+    width: 90px;
 }
 
 .share-container {
     justify-content: center;
 }
+

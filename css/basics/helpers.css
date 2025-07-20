@@ -33,3 +33,7 @@
     display: grid;
     grid-auto-flow: column;
 }
+
+.hidden {
+    display: none;
+}

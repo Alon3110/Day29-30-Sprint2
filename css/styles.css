@@ -1,24 +1,24 @@
 /* BACICS */
 
-@import url('/css/basics/layout.css');
-@import url('/css/basics/base.css');
-@import url('/css/basics/helpers.css');
+@import url('basics/layout.css');
+@import url('basics/base.css');
+@import url('basics/helpers.css');
 
 /* SETUP */
 
-@import url('/css/setup/variables.css');
-@import url('/css/setup/typography.css');
-@import url('/css/setup/mq.css');
+@import url('setup/variables.css');
+@import url('setup/typography.css');
+@import url('setup/mq.css');
 
 /* COMPONENTS */
 
-@import url('/css/component/header-container.css');
-@import url('/css/component/logo.css');
-@import url('/css/component/main-header.css');
-@import url('/css/component/main-nav.css');
-@import url('/css/component/canvas.css');
-@import url('/css/component/gallery.css');
-@import url('/css/component/editor.css');
-@import url('/css/component/meme-text.css');
-@import url('/css/component/key-word.css');
-@import url('/css/component/meme-text-style.css');
+@import url('component/header-container.css');
+@import url('component/logo.css');
+@import url('component/main-header.css');
+@import url('component/main-nav.css');
+@import url('component/canvas.css');
+@import url('component/gallery.css');
+@import url('component/editor.css');
+@import url('component/meme-text.css');
+@import url('component/key-word.css');
+@import url('component/meme-text-style.css');

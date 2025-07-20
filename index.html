@@ -30,20 +30,20 @@
             <div class="key-words-container flex">
                 <div class="key-word-btn flex">
                     <button onclick="onKeywordPressed(this.value)" data-trans="happy" value="happy"
-                    class="keyword keyword1">Happy</button>
+                        class="keyword keyword1">Happy</button>
                     <button onclick="onKeywordPressed(this.value)" data-trans="sad" value="sad"
-                    class="keyword keyword2">Sad</button>
+                        class="keyword keyword2">Sad</button>
                     <button onclick="onKeywordPressed(this.value)" data-trans="crazy" value="crazy"
-                    class="keyword keyword3">Crazy</button>
+                        class="keyword keyword3">Crazy</button>
                 </div>
-                
+
                 <div class="key-word-btn flex">
                     <button onclick="onKeywordPressed(this.value)" data-trans="sarcastic" value="sarcastic"
-                    class="keyword keyword4">Sarcastic</button>
+                        class="keyword keyword4">Sarcastic</button>
                     <button onclick="onKeywordPressed(this.value)" data-trans="funny" value="funny"
-                    class="keyword keyword5">Funny</button>
+                        class="keyword keyword5">Funny</button>
                 </div>
-                
+
             </div>
         </div>
 
@@ -81,20 +81,24 @@
                     </select>
                 </div>
 
-                <div class="meme-actions-container">
-                    <button>
-                        <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">
-                            Download<i class="fa-solid fa-file-arrow-down"></i>
-                        </a>
-                    </button>
+                <div class="meme-actions-container flex">
 
-                    <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp"
-                        class="file-input btn" id="file-input" name="image">
+                    <div class="actions-btn flex">
+                        <button>
+                            <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">
+                                Download<i class="fa-solid fa-file-arrow-down"></i>
+                            </a>
+                        </button>
 
-                    <div class="share-container flex">
-                        <form action="" method="POST" onsubmit="onUploadImg(event)">
-                            <button class="btn" type="submit">Upload to Cloudinary</button>
-                        </form>
+                        <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp"
+                            class="file-input btn" id="file-input" name="image">
+
+                        <button class="btn-upload" onclick="onUploadImg(event)">Upload</button>
+                    </div>
+
+
+
+                    <div class="share-container hidden">
                         <button class="btn-facebook" target="_blank"
                             onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg&amp;t=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg')">
                             Share on Facebook

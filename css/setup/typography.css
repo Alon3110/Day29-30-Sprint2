@@ -18,3 +18,8 @@
     font-family: rubik;
     src: url(/css/fonts/rubik/Rubik-Regular.ttf);
 }
+
+@font-face {
+    font-family: poppins;
+    src: url(/css/fonts/poppins/Poppins-Regular.ttf);
+}

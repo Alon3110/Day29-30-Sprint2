@@ -71,6 +71,7 @@ function onSelectImg(elImg) {
         gElCanvas = document.querySelector('canvas')
         gCtx = gElCanvas.getContext('2d')
     }
+    document.querySelector('.share-container').classList.add('hidden')
     renderMeme(elImg)
 }
 
@@ -284,7 +285,7 @@ function onUploadImg(ev) {
                 Share on Facebook
             </button>`
     }
-
+    document.querySelector('.share-container').classList.remove('hidden')
     uploadImg(canvasData, onSuccess)
 }
 
