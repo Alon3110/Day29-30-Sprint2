@@ -11,17 +11,14 @@
     .editor-container {
         flex-direction: column;
     }
-
-
-
 }
 
 @media(max-width: 900px) {
     .main-layout {
         grid-template-columns: minmax(15px, 1fr) minmax(auto, 640px) minmax(15px, 1fr);
-        
+
     }
-    
+
 
     .main-header {
         background-color: var(--clr-primary--7);
@@ -111,7 +108,7 @@
         grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(16px, 1fr);
     }
 
-    
+
 
     .main-header {
         height: 80px;

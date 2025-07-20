@@ -97,31 +97,50 @@
 
 .actions-btn {
     align-self: center;
-    /* border: none;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 10px;
-    padding: 10px;
-    cursor: pointer; */
+    gap: 10px;
 }
 
-.actions-btn button {
+.actions-btn button,
+.actions-btn input {
     height: 30px;
+    width: 100px;
+    border: none;
     border-radius: 5px;
-    box-shadow: 1px 6px 0 #6b169c, inset 0 5px 0 #b863e9;
-    background-color: #9920df;
+    cursor: pointer;
+}
+
+.download-btn {
+    box-shadow: 1px 3px 0 rgb(49, 129, 100), inset 0 5px 0 #5ec5ab;
+    background-color: rgb(70, 185, 143);
 }
 
 .actions-btn a {
     color: white;
     font-family: poppins;
+    text-decoration: none;
 }
 
-.file-input {
+
+.custom-file-label {
+    text-align: center;
     width: 90px;
+    height: 30px;
+    font-size: 14px;
+    color: white;
+    font-family: poppins;
+    border-radius: 5px;
+    box-shadow: 1px 3px 0 rgb(22, 84, 143), inset 0 5px 0 rgb(99, 168, 233);
+    background-color: rgb(63, 148, 228);
+    cursor: pointer;
+}
+
+.btn-upload {
+    border: none;
+    color: white;
+    box-shadow: 1px 3px 0 #6b169c, inset 0 5px 0 #b863e9;
+    background-color: #9920df;
 }
 
 .share-container {
     justify-content: center;
 }
-
