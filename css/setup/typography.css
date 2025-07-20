@@ -2,24 +2,24 @@
 
 @font-face {
     font-family: bangers;
-    src: url('/css/fonts/bangers/Bangers-Regular.ttf');
+    src: url('../fonts/bangers/Bangers-Regular.ttf');
 }
 
 /* LUCKIEST GUY */
 
 @font-face {
     font-family: luckiestGuy;
-    src: url('/css/fonts/luckiest-guy/LuckiestGuy-Regular.ttf');
+    src: url('../fonts/luckiest-guy/LuckiestGuy-Regular.ttf');
 }
 
 /* RUBIK */
 
 @font-face {
     font-family: rubik;
-    src: url('/css/fonts/rubik/Rubik-VariableFont_wght.ttf');
+    src: url('../fonts/rubik/Rubik-VariableFont_wght.ttf');
 }
 
 @font-face {
     font-family: poppins;
-    src: url('/css/fonts/poppins/Poppins-Regular.ttf');
+    src: url('../fonts/poppins/Poppins-Regular.ttf');
 }
