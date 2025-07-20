@@ -28,16 +28,22 @@
         <div class="main-key-words">
 
             <div class="key-words-container flex">
-                <button onclick="onKeywordPressed(this.value)" data-trans="happy" value="happy"
+                <div class="key-word-btn flex">
+                    <button onclick="onKeywordPressed(this.value)" data-trans="happy" value="happy"
                     class="keyword keyword1">Happy</button>
-                <button onclick="onKeywordPressed(this.value)" data-trans="sad" value="sad"
+                    <button onclick="onKeywordPressed(this.value)" data-trans="sad" value="sad"
                     class="keyword keyword2">Sad</button>
-                <button onclick="onKeywordPressed(this.value)" data-trans="crazy" value="crazy"
+                    <button onclick="onKeywordPressed(this.value)" data-trans="crazy" value="crazy"
                     class="keyword keyword3">Crazy</button>
-                <button onclick="onKeywordPressed(this.value)" data-trans="sarcastic" value="sarcastic"
+                </div>
+                
+                <div class="key-word-btn flex">
+                    <button onclick="onKeywordPressed(this.value)" data-trans="sarcastic" value="sarcastic"
                     class="keyword keyword4">Sarcastic</button>
-                <button onclick="onKeywordPressed(this.value)" data-trans="funny" value="funny"
+                    <button onclick="onKeywordPressed(this.value)" data-trans="funny" value="funny"
                     class="keyword keyword5">Funny</button>
+                </div>
+                
             </div>
         </div>
 
@@ -55,7 +61,8 @@
                     <button class="switch-line-btn" onclick="onSwitchLine(this)"><i class="fa-solid fa-arrow-up-long"
                             aria-hidden="true"></i><i class="fa-solid fa-arrow-down-long"
                             aria-hidden="true"></i></button>
-                    <button class="delete-line-btn" onclick="onDeleteLine()"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                    <button class="delete-line-btn" onclick="onDeleteLine()"><i class="fa-solid fa-trash"
+                            aria-hidden="true"></i></button>
                 </div>
 
                 <div class="meme-text-style">
@@ -74,18 +81,25 @@
                     </select>
                 </div>
 
-                <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download</a>
-                <form action="" method="POST" onsubmit="onUploadImg(event)">
-                    <button class="btn" type="submit">Upload to Cloudinary</button>
-                </form>
-                <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp" class="file-input btn"
-                    id="file-input" name="image">
-
-                <div class="share-container">
-                    <button class="btn-facebook" target="_blank"
-                        onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg&amp;t=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg')">
-                        Share on Facebook
+                <div class="meme-actions-container">
+                    <button>
+                        <a href="#" class="btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">
+                            Download<i class="fa-solid fa-file-arrow-down"></i>
+                        </a>
                     </button>
+
+                    <input onchange="onImgInput(event)" type="file" accept=".jpg, .jpeg, .png, .webp"
+                        class="file-input btn" id="file-input" name="image">
+
+                    <div class="share-container flex">
+                        <form action="" method="POST" onsubmit="onUploadImg(event)">
+                            <button class="btn" type="submit">Upload to Cloudinary</button>
+                        </form>
+                        <button class="btn-facebook" target="_blank"
+                            onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg&amp;t=https%3A%2F%2Fres.cloudinary.com%2Fwebify%2Fimage%2Fupload%2Fv1752839549%2Fwi51vdbjhdzclayzfec8.jpg')">
+                            Share on Facebook
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

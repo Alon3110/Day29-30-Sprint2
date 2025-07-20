@@ -10,14 +10,16 @@
 .key-words-container {
     background-color: var(--background-color);
     align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
     grid-column: 2;
-    margin-top: 100px;
-    gap: 1rem;
+    margin-top: 70px;
+    /* gap: 1rem; */
     padding: 1rem;
 }
 
 .key-words-container button {
-
+    
     --glow-color: rgb(217, 176, 255);
     --glow-spread-color: rgba(191, 123, 255, 0.781);
     --enhanced-glow-color: rgb(231, 206, 255);
@@ -30,11 +32,17 @@
     background-color: var(--btn-color);
     border-radius: 1em;
     outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     box-shadow:
-        0 0 1em 0.25em var(--glow-color),
-        0 0 2em 1em var(--glow-spread-color),
+        0 0 0.5em 0.25em var(--glow-color),
+        0 0 1em 0.5em var(--glow-spread-color),
         inset 0 0 0.75em 0.25em var(--glow-color);
+        /* 0 0 0.5em 0.25em var(--glow-color),
+        0 0 1em 1em var(--glow-spread-color),
+        inset 0 0 0.75em 0.25em var(--glow-color); */
 
     text-shadow: 0 0 0.5em var(--glow-color);
     position: relative;
@@ -55,8 +63,8 @@
     color: var(--btn-color);
     background-color: var(--glow-color);
     box-shadow:
-        0 0 1em 0.25em var(--glow-color),
-        0 0 4em 2em var(--glow-spread-color),
+        0 0 0.5em 0.25em var(--glow-color),
+        0 0 1em 0.5em var(--glow-spread-color),
         inset 0 0 0.75em 0.25em var(--glow-color);
 }
 
@@ -65,4 +73,8 @@
         0 0 0.6em 0.25em var(--glow-color),
         0 0 2.5em 2em var(--glow-spread-color),
         inset 0 0 0.5em 0.25em var(--glow-color);
+}
+
+.key-word-btn {
+    gap: 10px;
 }

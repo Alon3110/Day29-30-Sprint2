@@ -5,3 +5,10 @@
     background-color: var(--background-header-color);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.main-header .menu-btn {
+    background-color: var(--background-header-color);
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    border: none;
+}

@@ -52,7 +52,7 @@ function renderMeme(elImg) {
         }
 
 
-        document.querySelector('.editor-container').style.display = 'block'
+        document.querySelector('.editor-container').style.display = 'flex'
         document.querySelector('.img-container').style.display = 'none'
         document.querySelector('.key-words-container').style.display = 'none'
     }
@@ -258,11 +258,15 @@ function loadImageFromInput(ev, onImageReady) {
             onImageReady(img)
         }
         img.src = event.target.result
+        console.log(img);
+        console.log('load img')
+        
     }
     reader.readAsDataURL(ev.target.files[0])
 }
 
 function renderImg(img) {
+    gCurrImg = img
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
@@ -285,16 +289,16 @@ function onUploadImg(ev) {
 }
 
 function onKeywordPressed(value) {
-  if (!gKeywordSearchCountMap[value]) gKeywordSearchCountMap[value] = 1;
-  else gKeywordSearchCountMap[value]++;
+    if (!gKeywordSearchCountMap[value]) gKeywordSearchCountMap[value] = 1;
+    else gKeywordSearchCountMap[value]++;
 
-  const newSizeEm = 0.75 + gKeywordSearchCountMap[value] * 0.05;
+    const newSizeEm = 0.75 + gKeywordSearchCountMap[value] * 0.05;
 
-  const btn = document.querySelector(`.main-key-words .keyword[value="${value}"]`);
-  if (btn) btn.style.fontSize = `${newSizeEm}em`;
+    const btn = document.querySelector(`.main-key-words .keyword[value="${value}"]`);
+    if (btn) btn.style.fontSize = `${newSizeEm}em`;
 
-  const filteredImgs = gImgs.filter(img => img.keywords.includes(value));
-  renderFilteredGallery(filteredImgs);
+    const filteredImgs = gImgs.filter(img => img.keywords.includes(value));
+    renderFilteredGallery(filteredImgs);
 }
 
 function onSelectEmoji(elImg) {

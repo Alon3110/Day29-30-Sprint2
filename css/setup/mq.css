@@ -3,20 +3,35 @@
 /* small: 740px */
 
 /* MOBILE MENU */
+@media (max-width: 440px) {
+    .main-layout {
+        grid-template-columns: minmax(15px, 1fr) minmax(340px, 1fr) minmax(15px, 1fr);
+    }
+
+    .editor-container {
+        flex-direction: column;
+    }
+
+
+
+}
 
 @media(max-width: 900px) {
     .main-layout {
-        margin-left: 0;
+        grid-template-columns: minmax(15px, 1fr) minmax(auto, 640px) minmax(15px, 1fr);
+        
     }
+    
 
     .main-header {
         background-color: var(--clr-primary--7);
         box-shadow: inset 0px -6px 0 #111;
+        height: 60px;
     }
 
     .main-header .logo {
         margin-right: 2.5rem;
-        font-size: 1.2rem;
+        font-size: 1.7rem;
     }
 
     .main-header button {
@@ -28,7 +43,7 @@
     .main-nav {
         position: fixed;
         background: #000;
-        top: 25px;
+        top: 60px;
         width: 100%;
         left: 0;
 
@@ -45,14 +60,18 @@
     }
 
     .main-nav>ul {
+        height: fit-content;
         grid-auto-flow: row;
         overflow: hidden;
         text-align: center;
     }
 
     .main-nav>ul>li {
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
         border-bottom: 1px solid #ccc;
-
+        height: 60px;
     }
 
     .main-nav a {
@@ -65,7 +84,7 @@
         max-height: 1rem;
         font-size: 0.5rem;
         text-align: center;
-        
+
     }
 
     .editor-container {
@@ -73,7 +92,7 @@
     }
 
     .meme-editor-items {
-       gap: none;
+        gap: none;
     }
 
 }
@@ -83,7 +102,7 @@
 @media (min-width: 640px) {
     .main-layout {
         grid-template-columns: minmax(16px, 1fr) minmax(auto, 640px) minmax(16px, 1fr);
-    }    
+    }
 }
 
 /* MEDIUM */
@@ -91,6 +110,8 @@
     .main-layout {
         grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(16px, 1fr);
     }
+
+    
 
     .main-header {
         height: 80px;
@@ -111,7 +132,7 @@
     .main-nav ul {
         display: flex;
         align-items: center;
-        gap: 70px;
+        gap: 30px;
     }
 
     .key-words-container button {

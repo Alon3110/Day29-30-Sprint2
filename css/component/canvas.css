@@ -1,7 +1,9 @@
 canvas {
+    margin: 30px auto;
     border: 1px solid black;
-    width: 400px;
+    width: 100%;
     height: 400px;
+    margin-right: 15px;
 }
 
 .editor-container {
